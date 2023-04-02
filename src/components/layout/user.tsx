@@ -4,7 +4,7 @@ const UserLayout = () => {
   return (
     <div>
       {/* Header */}
-      <header className="py-1 bg-[#D70018] mb-[30px]">
+      <header className="py-1 bg-[#D70018]">
         <div className="container flex items-center gap-[115px] mx-auto max-w-[1220px]">
           <img className="w-[50px]" src="/logo.png" alt="" />
           <div className="w-full px-3 bg-white rounded-md">
