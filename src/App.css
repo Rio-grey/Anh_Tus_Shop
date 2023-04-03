@@ -1,3 +1,6 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
 #root {
   /* max-width: 1792px; */
   margin: 0 auto;

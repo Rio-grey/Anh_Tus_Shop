@@ -1,19 +1,46 @@
 import { Outlet } from "react-router-dom";
-
 const UserLayout = () => {
   return (
     <div>
       {/* Header */}
       <header className="py-1 bg-[#D70018]">
         <div className="container flex items-center gap-[115px] mx-auto max-w-[1220px]">
-          <img className="w-[50px]" src="/logo.png" alt="" />
+          <a href="/">
+            <img className="w-[116px]" src="/logo.png" alt="" />
+          </a>
           <div className="w-full px-3 bg-white rounded-md">
             <i className="cursor-pointer fa-solid fa-magnifying-glass"></i>
             <input
-              className="px-3 py-1 rounded-md outline-none grow"
+              className="w-[97%] px-3 py-1 rounded-md outline-none border-none focus:ring-transparent"
               type="text"
               placeholder="Tìm kiếm"
             />
+          </div>
+          <div className="flex items-center text-white gap-x-8">
+            <div>
+              <p className="leading-[14px] text-xs max-w-[75px] whitespace-nowrap">
+                Gọi mua hàng
+              </p>
+              <p className="leading-[14px] text-xs">1800.2097</p>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <i className="fal fa-map-marker-alt"></i>
+              <a href="" className="leading-[14px] text-xs min-w-[54px]">
+                Cửa hàng gần bạn
+              </a>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <i className="fal fa-shipping-fast"></i>
+              <a href="" className="leading-[14px] text-xs min-w-[54px]">
+                Tra cứu đơn hàng
+              </a>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <i className="fal fa-cart-plus"></i>
+              <a href="/cart" className="leading-[14px] text-xs">
+                Giỏ hàng
+              </a>
+            </div>
           </div>
         </div>
       </header>

@@ -8,7 +8,7 @@ const Homepage = () => {
         <Banner></Banner>
       </div>
       <div>
-        <h1 className="text-2xl mb-[11px] leading-10 text-[#444444]">
+        <h1 className="text-2xl mb-5 leading-10 text-[#444444]">
           ĐIỆN THOẠI NỔI BẬT NHẤT
         </h1>
         <div className="grid grid-cols-7 gap-4 mb-32">

@@ -1,5 +1,6 @@
 import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
+import ProductDetail from "../components/ProductDetail";
 
 const DetailProduct = () => {
   return (
@@ -7,7 +8,9 @@ const DetailProduct = () => {
       <div>
         <BreadCrumb></BreadCrumb>
       </div>
-      <div></div>
+      <div>
+        <ProductDetail></ProductDetail>
+      </div>
     </div>
   );
 };

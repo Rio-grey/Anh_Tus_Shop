@@ -1,6 +1,6 @@
 const Product = () => {
   return (
-    <a href="" className="block mb-16">
+    <a href="/detail" className="block mb-16">
       <img
         alt=""
         src="iphone11.png"
