@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 const UserLayout = () => {
   return (
     <div>
       {/* Header */}
       <header className="py-1 bg-[#D70018]">
         <div className="container flex items-center gap-[115px] mx-auto max-w-[1220px]">
-          <a href="/">
-            <img className="w-[116px]" src="/logo.png" alt="" />
-          </a>
+          <Link to="/">
+            <img className="flex-shrink-0" src="/logo.png" alt="" />
+          </Link>
           <div className="w-full px-3 bg-white rounded-md">
             <i className="cursor-pointer fa-solid fa-magnifying-glass"></i>
             <input
-              className="w-[97%] px-3 py-1 rounded-md outline-none border-none focus:ring-transparent"
+              className="px-3 py-1 border-none rounded-md outline-none focus:ring-transparent"
               type="text"
               placeholder="Tìm kiếm"
             />
@@ -25,23 +25,26 @@ const UserLayout = () => {
             </div>
             <div className="flex items-center gap-x-2">
               <i className="fal fa-map-marker-alt"></i>
-              <a href="" className="leading-[14px] text-xs min-w-[54px]">
+              <Link to="" className="leading-[14px] text-xs min-w-[54px]">
                 Cửa hàng gần bạn
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-x-2">
               <i className="fal fa-shipping-fast"></i>
-              <a href="" className="leading-[14px] text-xs min-w-[54px]">
+              <Link to="" className="leading-[14px] text-xs min-w-[54px]">
                 Tra cứu đơn hàng
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-x-2">
               <i className="fal fa-cart-plus"></i>
-              <a href="/cart" className="leading-[14px] text-xs">
+              <Link to="/cart" className="leading-[14px] text-xs">
                 Giỏ hàng
-              </a>
+              </Link>
             </div>
           </div>
+          <Link to={"signin"}>
+            <i className="text-2xl text-white fa-regular fa-circle-user"></i>
+          </Link>
         </div>
       </header>
       {/* Content */}

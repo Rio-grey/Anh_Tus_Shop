@@ -4,7 +4,6 @@ import SidebarMenu from "../components/SidebarMenu";
 const Add = () => {
   return (
     <div className="flex">
-      <SidebarMenu></SidebarMenu>
       <div className="w-full p-7">
         <h1 className="leading-[30px] mb-4 text-xl text-[#5F5E61] font-semibold">
           Thêm mới Sản phẩm
@@ -15,10 +14,12 @@ const Add = () => {
               href=""
               className="w-[395px] h-[259px] shadow-md mb-1 rounded-lg flex items-center justify-center"
             >
-              <img src="add_icon.svg" alt="" className="mb-5" />
-              <span className="text-[#3D5170] text-2xl leading-8 text-center">
-                Thêm ảnh
-              </span>
+              <div className="flex flex-col">
+                <img src="../../add_icon.svg" alt="" className="mb-5" />
+                <span className="text-[#3D5170] text-2xl leading-8 text-center">
+                  Thêm ảnh
+                </span>
+              </div>
             </a>
             <textarea
               name=""

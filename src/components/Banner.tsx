@@ -20,31 +20,25 @@ const Banner = () => {
           data-te-carousel-item
           data-te-carousel-active
         >
-          <img
-            src="banner1.png"
-            className="block w-full h-[418px] object-cover"
-            alt=""
-          />
+          <img src="banner1.png" className="block object-cover w-full" alt="" />
         </div>
         <div
           className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           data-te-carousel-item
         >
-          <img
-            src="banner2.png"
-            className="block w-full h-[418px] object-cover"
-            alt=""
-          />
+          <img src="banner2.png" className="block object-cover w-full" alt="" />
         </div>
         <div
           className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           data-te-carousel-item
         >
-          <img
-            src="banner3.png"
-            className="block w-full h-[418px] object-cover"
-            alt=""
-          />
+          <img src="banner3.png" className="block object-cover w-full" alt="" />
+        </div>
+        <div
+          className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+          data-te-carousel-item
+        >
+          <img src="banner4.png" className="block object-cover w-full" alt="" />
         </div>
       </div>
       <button

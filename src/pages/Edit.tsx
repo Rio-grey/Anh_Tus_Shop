@@ -4,7 +4,6 @@ import SidebarMenu from "../components/SidebarMenu";
 const Edit = () => {
   return (
     <div className="flex">
-      <SidebarMenu></SidebarMenu>
       <div className="w-full p-7">
         <h1 className="leading-[30px] mb-4 text-xl text-[#5F5E61] font-semibold">
           Cập nhật Sản phẩm
@@ -16,7 +15,7 @@ const Edit = () => {
               className="w-[395px] h-[259px] shadow-md mb-1 rounded-lg flex items-center justify-center"
             >
               <img
-                src="samsungA73.png"
+                src="../../samsungA73.png"
                 alt=""
                 className="mb-5 w-[242px] h-[242px]"
               />

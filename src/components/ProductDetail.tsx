@@ -1,54 +1,102 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { IProduct } from "../models";
+import { getById } from "../api/product";
 
 const ProductDetail = () => {
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const { id } = useParams();
+  const fetchProduct = async () => {
+    if (id) {
+      const { data } = await getById(id);
+      setProduct(data);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
   return (
     <div>
       <div className="mb-10 shadow-md">
         <div className="max-w-[1220px] mx-auto">
           <h1 className="text-[#0A263C] py-2 text-lg leading-[29px]">
-            Samsung Galaxy A73 (5G) 256GB
+            {product.name}
           </h1>
         </div>
       </div>
       <div className="max-w-[1220px] mx-auto flex gap-x-[52px] mb-[66px]">
         <div>
-          <img src="samsungA73.png" alt="" className="mb-[42px] mx-auto" />
+          <img
+            src={product.images?.[0].base_url}
+            alt=""
+            className="mb-[42px] w-[358px] h-[358px] mx-auto"
+          />
           <div className="flex item-center gap-x-[10px]">
             <div className="border border-[#D70018] rounded-lg text-center p-[1px] max-w-[60px] leading-[8px]">
-              <img src="stars.svg" alt="" className="mb-[0px] mx-auto" />
+              <img src="../../stars.svg" alt="" className="mb-[0px] mx-auto" />
               <span className="text-[#666666] text-[10px]">
                 Tính năng nổi bật
               </span>
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
-              <img src="samsungA73_small.png" alt="" />
+              <img
+                src={product.images?.[0].thumbnail_url}
+                alt=""
+                className="w-[48px] h-[48px] object-cover"
+              />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
-              <img src="samsungA73_small.png" alt="" />
+              <img
+                src={product.images?.[0].thumbnail_url}
+                alt=""
+                className="w-[48px] h-[48px] object-cover"
+              />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
-              <img src="samsungA73_small.png" alt="" />
+              <img
+                src={product.images?.[0].thumbnail_url}
+                alt=""
+                className="w-[48px] h-[48px] object-cover"
+              />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
-              <img src="samsungA73_small.png" alt="" />
+              <img
+                src={product.images?.[0].thumbnail_url}
+                alt=""
+                className="w-[48px] h-[48px] object-cover"
+              />
             </div>
           </div>
         </div>
-        <div>
+        <div className="flex flex-col">
           <div className="flex items-baseline gap-x-4 mb-[28px]">
             <h2 className="text-[#D70018] leading-[22px] text-2xl">
-              11.690.000 ₫
+              {product.price} ₫
             </h2>
             <span className="text-sm leading-[22px] text-[#707070]">
-              12.990.000 ₫
+              {product.original_price} ₫
             </span>
           </div>
-          <p className="text-[#444444] text-[15px] leading-[22px] max-w-[880px]">
+          <p className="text-[#444444] mb-auto text-[15px] leading-[22px] max-w-[880px]">
             Mô tả ngắn: Trước khi mua bất kỳ chiếc điện thoại nào, người dùng
             cũng sẽ quan tâm đến thiết kế sản phẩm trước. Với phiên bản A73,
             Samsung đã tạo nên một chiếc smartphone với vẻ ngoài mang đến cảm
             giác sang trọng và tinh tế.
           </p>
+          <div className="flex items-center mt-auto gap-x-5">
+            <button className="min-w-[233px] py-3 bg-[#FF3945] hover:bg-red-600 transition-all text-white rounded-md">
+              Mua ngay
+            </button>
+            <div className="p-3 bg-white border w-[48px] rounded-md border-[#D70018]">
+              <a href="">
+                <img src="../../cart.svg" alt="" />
+              </a>
+            </div>
+            <span className="text-sm leading-6 max-w-[68px]">
+              Thêm vào giỏ hàng
+            </span>
+          </div>
         </div>
       </div>
       <div className="max-w-[1220px] mx-auto">
@@ -56,7 +104,15 @@ const ProductDetail = () => {
           <h1 className="text-[#D70018] text-lg leading-[25px] text-center mb-[7px]">
             ĐẶC ĐIỂM NỔI BẬT
           </h1>
-          <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
+          {product.specifications?.[0].attributes.map((attribute, index) => (
+            <p
+              key={index}
+              className="text-[#444444] text-sm leading-[22px] mb-[5px]"
+            >
+              {attribute.value}
+            </p>
+          ))}
+          {/* <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
             Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với cảm
             biến chính lên đến 108 MP
           </p>
@@ -71,7 +127,7 @@ const ProductDetail = () => {
           <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
             Chiến game thoải mái không lo gián đoạn - Viên pin lớn 5000 mAh, hỗ
             trợ sạc nhanh 25 W
-          </p>
+          </p> */}
         </div>
         <p className="text-[#444444] text-[15px] leading-[22px] mb-7">
           Năm 2022 hứa hẹn sẽ là một năm rất đáng trông đợi đối với những ai là
