@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import UserLayout from "./components/layout/user";
-import Homepage from "./pages/HomePage";
-import DetailProduct from "./pages/DetailProduct";
-import AdminLayout from "./components/layout/admin";
-import Dashboard from "./pages/Dashboard";
-import Add from "./pages/Add";
-import Edit from "./pages/Edit";
+import UserLayout from "./components/layout/user/user";
+import Homepage from "./pages/user/HomePage";
+import DetailProduct from "./pages/user/DetailProduct";
+import AdminLayout from "./components/layout/admin/admin";
+import Dashboard from "./pages/admin/Dashboard";
+import Add from "./pages/admin/Add";
+import Edit from "./pages/admin/Edit";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import Cart from "./pages/Cart";
+import Cart from "./pages/user/Cart";
 
 function App() {
   return (
@@ -25,8 +24,8 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />}></Route>
-          <Route path="add" element={<Add />}></Route>
-          <Route path="edit" element={<Edit />}></Route>
+          <Route path="addProduct" element={<Add />}></Route>
+          <Route path="editProduct/:id" element={<Edit />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

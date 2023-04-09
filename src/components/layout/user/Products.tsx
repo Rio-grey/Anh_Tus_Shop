@@ -7,19 +7,24 @@ type Props = {
 
 const Product = ({ data }: Props) => {
   return (
-    <Link to={`product/${data.id}`} className="flex flex-col mb-16">
+    <Link
+      to={`product/${data.id}`}
+      className="flex flex-col p-5 mb-16 shadow-lg"
+    >
       <img
         alt=""
-        src={data?.images[0].base_url}
-        className="object-cover w-[160px] h-[160px] mx-auto mb-5"
+        src={data?.images[0]}
+        className="object-cover w-[200px] h-[200px] mx-auto mb-3"
       />
-      <h3 className="font-medium text-center mb-[27px]">{data.name}</h3>
+      <h3 className="mb-4 text-lg font-semibold">{data.name}</h3>
       <div className="mt-auto">
-        <div className="flex mb-2 gap-x-5">
-          <span className="text-[#D70018] leading-[18px]">{data.price} ₫</span>
-          <span className="text-[#707070] leading-5">
-            {data.original_price} ₫
+        <div className="flex mb-2 gap-x-4">
+          <span className="text-[#D70018] text-lg font-medium leading-[18px]">
+            {data.price} ₫
           </span>
+          <del className="text-[#707070] leading-5">
+            {data.original_price} ₫
+          </del>
         </div>
         <div className="flex items-baseline gap-x-1">
           <div className="">
@@ -29,7 +34,6 @@ const Product = ({ data }: Props) => {
             <img src="star.png" alt="" className="inline shrink-0" />
             <img src="star.png" alt="" className="inline shrink-0" />
           </div>
-          <span className="text-xs leading-[18px]">72 đánh giá</span>
         </div>
       </div>
     </Link>

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
-import { SignupForm, signupSchema } from "../models";
+import { Link, useNavigate } from "react-router-dom";
+
 import { signup } from "../api/auth";
+import { SignupForm, signupSchema } from "../models/user";
 
 const Signup = () => {
   const {
@@ -103,21 +104,21 @@ const Signup = () => {
           </button>
           <p className="mb-6 text-center">
             Bạn đã có tài khoản?{" "}
-            <a href="signin" className="text-blue-900 underline">
+            <Link to="/signin" className="text-blue-900 underline">
               Đăng nhập
-            </a>
+            </Link>
           </p>
           <div>
             <p className="text-lg leading-4 text-[#444] text-center mb-4">
               Hoặc đăng ký bằng
             </p>
             <div className="flex items-center justify-center gap-x-5">
-              <a href="">
+              <Link to="">
                 <img src="fb.png" alt="" />
-              </a>
-              <a href="">
+              </Link>
+              <Link to="">
                 <img src="google.png" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

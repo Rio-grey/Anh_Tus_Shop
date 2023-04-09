@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IProduct } from "../models";
-import { getById } from "../api/product";
+import { getById } from "../../../api/product";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);

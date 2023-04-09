@@ -1,5 +1,5 @@
 import instance from ".";
-import { SigninForm, SignupForm } from "../models";
+import { SigninForm, SignupForm } from "../models/user";
 
 export const signup = (data: SignupForm) => {
   const uri = "/signup";

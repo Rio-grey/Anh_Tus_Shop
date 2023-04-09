@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { SigninForm, signinSchema } from "../models";
+import { Link, useNavigate } from "react-router-dom";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signin } from "../api/auth";
-import { useLocalStorage } from "../hooks";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { SigninForm, signinSchema } from "../models/user";
 
 const Signin = () => {
   const {
@@ -74,21 +75,21 @@ const Signin = () => {
           </button>
           <p className="mb-6 text-center">
             Bạn chưa có tài khoản?{" "}
-            <a href="signup" className="text-blue-900 underline">
+            <Link to="/signup" className="text-blue-900 underline">
               Đăng ký
-            </a>
+            </Link>
           </p>
           <div>
             <p className="text-lg leading-4 text-[#444] text-center mb-4">
               Hoặc đăng nhập bằng
             </p>
             <div className="flex items-center justify-center gap-x-5">
-              <a href="">
+              <Link to="">
                 <img src="fb.png" alt="" />
-              </a>
-              <a href="">
+              </Link>
+              <Link to="">
                 <img src="google.png" alt="" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -6,12 +6,12 @@ const UserLayout = () => {
       <header className="py-1 bg-[#D70018]">
         <div className="container flex items-center gap-[115px] mx-auto max-w-[1220px]">
           <Link to="/">
-            <img className="flex-shrink-0" src="/logo.png" alt="" />
+            <img className="flex-shrink-0 rounded-md" src="/logo.png" alt="" />
           </Link>
           <div className="w-full px-3 bg-white rounded-md">
             <i className="cursor-pointer fa-solid fa-magnifying-glass"></i>
             <input
-              className="px-3 py-1 border-none rounded-md outline-none focus:ring-transparent"
+              className="flex-shrink-0 px-3 py-1 border-none rounded-md outline-none focus:ring-transparent"
               type="text"
               placeholder="Tìm kiếm"
             />
@@ -42,8 +42,9 @@ const UserLayout = () => {
               </Link>
             </div>
           </div>
-          <Link to={"signin"}>
+          <Link to={"signin"} className="flex items-center gap-x-3">
             <i className="text-2xl text-white fa-regular fa-circle-user"></i>
+            <span className="text-white whitespace-nowrap">Đăng nhập</span>
           </Link>
         </div>
       </header>

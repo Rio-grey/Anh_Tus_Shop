@@ -1,6 +1,6 @@
 import React from "react";
-import BreadCrumb from "../components/BreadCrumb";
-import ProductDetail from "../components/ProductDetail";
+import BreadCrumb from "../../components/layout/user/BreadCrumb";
+import ProductDetail from "../../components/layout/user/ProductDetail";
 
 const DetailProduct = () => {
   return (
