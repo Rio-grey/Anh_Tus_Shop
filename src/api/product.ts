@@ -1,5 +1,6 @@
 import instance from ".";
 import { IProduct } from "../interfaces/product";
+import { addForm, updateForm } from "../models/product";
 
 const token = JSON.parse(localStorage.getItem("user")!)?.accessToken;
 
@@ -9,19 +10,19 @@ export const getAll = () => {
 };
 
 export const getById = (id: string | number) => {
-  const uri = "/products/" + id;
+  const uri = `/products/${id}`;
   return instance.get(uri);
 };
 
-export const addProduct = (product: IProduct) => {
+export const addProduct = (product: addForm) => {
   return instance.post("/products", product, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 };
-export const updateProduct = (product: IProduct) => {
-  return instance.patch(`/products/${product._id}`, product, {
+export const updateProduct = (id: string | number, product: updateForm) => {
+  return instance.put(`/products/${id}`, product, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

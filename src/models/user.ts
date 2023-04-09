@@ -5,9 +5,6 @@ export const signupSchema = Yup.object({
   email: Yup.string()
     .email("Email sai định dạng sai")
     .required("Trường email là bắt buộc"),
-  phoneNumber: Yup.string()
-    .max(10, "Số điện thoại gồm 10 số")
-    .required("Trường phone number là bắt buộc"),
   password: Yup.string()
     .min(6, "Mật khẩu phải ít nhất 6 kí tự")
     .required("Trường password là bắt buộc"),

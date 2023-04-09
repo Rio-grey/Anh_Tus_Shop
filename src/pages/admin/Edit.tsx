@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getById, updateProduct } from "../../api/product";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { updateForm, updateSchema } from "../../models/product";
+import { ICategory } from "../../interfaces/category";
+import { IProduct } from "../../interfaces/product";
+import { getCategory } from "../../api/category";
 
 const Edit = () => {
+  const [category, setCategory] = useState<ICategory[]>([]);
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -20,6 +25,17 @@ const Edit = () => {
       }
     },
   });
+  const fetchCategory = async () => {
+    try {
+      const { data } = await getCategory();
+      setCategory(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchCategory();
+  }, []);
   const onHandleSubmit = async (data: updateForm) => {
     try {
       if (id) {
@@ -32,8 +48,12 @@ const Edit = () => {
     }
   };
   const fetchProductById = async (id: string | number) => {
-    const { data } = await getById(id);
-    return data;
+    const {
+      data: { data: product },
+    } = await getById(id);
+    console.log(product);
+
+    return product;
   };
   // useEffect(() => {
   //   if (id) {
@@ -62,16 +82,24 @@ const Edit = () => {
                     />
                     <p className="mt-3 text-gray-400">Sửa ảnh</p>
                   </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
+                  <input
+                    {...register("images")}
+                    id="dropzone-file"
+                    type="file"
+                    className="hidden"
+                  />
+                  <p className="text-xs text-red-500">
+                    {errors.images && errors.images.message}
+                  </p>
                 </label>
               </div>
               <textarea
-                {...register("desc_short")}
+                {...register("description_short")}
                 className="w-full h-24 shadow-md rounded-md outline-none p-4 text-[13px] text-[#5A6169] resize-none border-none"
                 placeholder="Mô tả ngắn..."
               ></textarea>
               <p className="text-xs text-red-500">
-                {errors.desc_short && errors.desc_short.message}
+                {errors.description_short && errors.description_short.message}
               </p>
             </div>
             <div className="w-full">
@@ -136,9 +164,21 @@ const Edit = () => {
                   >
                     Danh mục
                   </label>
-                  <select className="p-2 w-full text-sm text-[#444444] leading-5 border border-gray-200 rounded-md outline-none">
-                    <option value="Laptop">Laptop</option>
+                  <select
+                    className="w-full p-2 text-sm bg-transparent border-gray-200 rounded-md border-1"
+                    {...register("categoryId")}
+                    value={product?.categoryId?._id}
+                  >
+                    {category &&
+                      category.map((cate) => (
+                        <option key={cate._id} value={cate?._id}>
+                          {cate.name}
+                        </option>
+                      ))}
                   </select>
+                  <p className="text-xs text-red-500">
+                    {errors.categoryId && errors.categoryId.message}
+                  </p>
                 </div>
                 <div className="w-2/4 mb-4">
                   <label
@@ -148,9 +188,13 @@ const Edit = () => {
                     Thương hiệu
                   </label>
                   <input
+                    {...register("brand")}
                     type="text"
                     className="px-3 py-2 w-full text-sm text-[#444444] leading-5 border border-gray-200 rounded-md outline-none"
                   />
+                  <p className="text-xs text-red-500">
+                    {errors.brand && errors.brand.message}
+                  </p>
                 </div>
               </div>
               <div className="mb-4">
@@ -161,11 +205,12 @@ const Edit = () => {
                   Đặc điểm nổi bật
                 </label>
                 <textarea
-                  {...register("special")}
+                  {...register("description_special")}
                   className="p-3 w-full text-sm text-[#444444] resize-none h-32 leading-5 border border-gray-200 rounded-md outline-none"
                 />
                 <p className="text-xs text-red-500">
-                  {errors.special && errors.special.message}
+                  {errors.description_special &&
+                    errors.description_special.message}
                 </p>
               </div>
               <div className="mb-4">
@@ -176,15 +221,15 @@ const Edit = () => {
                   Mô tả dài
                 </label>
                 <textarea
-                  {...register("desc_long")}
+                  {...register("description_long")}
                   className="p-3 w-full text-sm text-[#444444] resize-none h-32 leading-5 border border-gray-200 rounded-md outline-none"
                 />
                 <p className="text-xs text-red-500">
-                  {errors.desc_long && errors.desc_long.message}
+                  {errors.description_long && errors.description_long.message}
                 </p>
               </div>
               <button className="bg-[#00B0D7] hover:bg-[#007BFF] transition-all text-white text-xs leading-[14px] px-[13px] py-[10px] rounded-md">
-                Thêm mới
+                Sửa lại
               </button>
             </div>
           </div>

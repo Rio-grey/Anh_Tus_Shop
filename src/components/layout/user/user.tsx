@@ -1,14 +1,24 @@
+import { Button } from "flowbite-react";
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 const UserLayout = () => {
-  const [user, setUser] = useState({});
+  const user = JSON.parse(localStorage.getItem("user")!);
+  const userName = JSON.parse(localStorage.getItem("user")!)?.name;
+  console.log(userName);
+  const logOut = () => {
+    localStorage.clear();
+  };
   return (
     <div>
       {/* Header */}
       <header className="py-1 bg-[#D70018]">
-        <div className="container flex items-center gap-[115px] mx-auto max-w-[1220px]">
+        <div className="container flex items-center gap-[50px] mx-auto max-w-[1220px]">
           <Link to="/">
-            <img className="flex-shrink-0 rounded-md" src="/logo.png" alt="" />
+            <img
+              className="flex-shrink-0 rounded-md w-[150px]"
+              src="/logo.png"
+              alt=""
+            />
           </Link>
           <div className="w-full px-3 bg-white rounded-md">
             <i className="cursor-pointer fa-solid fa-magnifying-glass"></i>
@@ -46,8 +56,21 @@ const UserLayout = () => {
           </div>
           <Link to={"signin"} className="flex items-center gap-x-3">
             <i className="text-2xl text-white fa-regular fa-circle-user"></i>
-            <span className="text-white whitespace-nowrap">Đăng nhập</span>
+            <span className="text-white whitespace-nowrap">
+              {userName ? userName : "Đăng nhập"}
+            </span>
           </Link>
+          {user ? (
+            <a
+              href="/"
+              onClick={() => logOut()}
+              className="p-2 text-red-600 transition-all bg-white rounded-md whitespace-nowrap hover:bg-red-500 hover:text-white"
+            >
+              Đăng xuất
+            </a>
+          ) : (
+            ""
+          )}
         </div>
       </header>
       {/* Content */}
@@ -95,19 +118,19 @@ const UserLayout = () => {
               </li>
               <li className="flex items-center gap-x-4">
                 <a href="">
-                  <img src="citi.png" alt="" className="" />
+                  <img src="../citi.png" alt="" className="" />
                 </a>
                 <a href="">
-                  <img src="moca.png" alt="" className="" />
+                  <img src="../moca.png" alt="" className="" />
                 </a>
                 <a href="">
-                  <img src="kredivo.png" alt="" className="" />
+                  <img src="../kredivo.png" alt="" className="" />
                 </a>
                 <a href="">
-                  <img src="vnpay.png" alt="" className="" />
+                  <img src="../vnpay.png" alt="" className="" />
                 </a>
                 <a href="">
-                  <img src="vpbank.png" alt="" className="" />
+                  <img src="../vpbank.png" alt="" className="" />
                 </a>
               </li>
             </ul>
@@ -144,7 +167,7 @@ const UserLayout = () => {
               </li>
               <li className="">
                 <a href="">
-                  <img src="contact.png" alt="" />
+                  <img src="../contact.png" alt="" />
                 </a>
               </li>
             </ul>

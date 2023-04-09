@@ -149,17 +149,18 @@ const Dashboard = () => {
               <td className="px-6 py-4">{product.original_price} ₫</td>
               <td className="px-6 py-4">
                 <Link
-                  to={`/admin/editProduct/${product._id}`}
+                  to={`/admin/products/${product._id}`}
                   className="px-4 py-2 font-medium text-white rounded-md bg-cyan-500 shadow-cyan-500/50"
                 >
                   Edit
                 </Link>
-                <button
+                <a
+                  href="/admin"
                   onClick={() => handleDeleteProduct(product._id)}
                   className="px-3 py-[6.5px] ml-3 font-medium text-white bg-red-500 rounded-md shadow-red-500/50"
                 >
                   Remove
-                </button>
+                </a>
               </td>
             </tr>
           ))}

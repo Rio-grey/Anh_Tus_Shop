@@ -1,16 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { IProduct } from "../models";
 import { getById } from "../../../api/product";
+import { IProduct } from "../../../interfaces/product";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const { id } = useParams();
   const fetchProduct = async () => {
     if (id) {
-      const { data } = await getById(id);
-      setProduct(data);
+      const {
+        data: { data: product },
+      } = await getById(id);
+      console.log(product);
+
+      setProduct(product);
     }
   };
   useEffect(() => {
@@ -28,7 +32,7 @@ const ProductDetail = () => {
       <div className="max-w-[1220px] mx-auto flex gap-x-[52px] mb-[66px]">
         <div>
           <img
-            src={product.images?.[0].base_url}
+            src={product.images?.[0]}
             alt=""
             className="mb-[42px] w-[358px] h-[358px] mx-auto"
           />
@@ -41,28 +45,28 @@ const ProductDetail = () => {
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0].thumbnail_url}
+                src={product.images?.[0]}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0].thumbnail_url}
+                src={product.images?.[0]}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0].thumbnail_url}
+                src={product.images?.[0]}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0].thumbnail_url}
+                src={product.images?.[0]}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
@@ -79,10 +83,7 @@ const ProductDetail = () => {
             </span>
           </div>
           <p className="text-[#444444] mb-auto text-[15px] leading-[22px] max-w-[880px]">
-            Mô tả ngắn: Trước khi mua bất kỳ chiếc điện thoại nào, người dùng
-            cũng sẽ quan tâm đến thiết kế sản phẩm trước. Với phiên bản A73,
-            Samsung đã tạo nên một chiếc smartphone với vẻ ngoài mang đến cảm
-            giác sang trọng và tinh tế.
+            Mô tả ngắn: {product.description_short}
           </p>
           <div className="flex items-center mt-auto gap-x-5">
             <button className="min-w-[233px] py-3 bg-[#FF3945] hover:bg-red-600 transition-all text-white rounded-md">
@@ -104,30 +105,9 @@ const ProductDetail = () => {
           <h1 className="text-[#D70018] text-lg leading-[25px] text-center mb-[7px]">
             ĐẶC ĐIỂM NỔI BẬT
           </h1>
-          {product.specifications?.[0].attributes.map((attribute, index) => (
-            <p
-              key={index}
-              className="text-[#444444] text-sm leading-[22px] mb-[5px]"
-            >
-              {attribute.value}
-            </p>
-          ))}
-          {/* <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
-            Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với cảm
-            biến chính lên đến 108 MP
-          </p>
           <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
-            Thưởng thức không gian giải trí cực đỉnh - Màn hình lớn 6.7 inch, độ
-            phân giải Full HD+, 120Hz mượt mà
+            {product.description_special}
           </p>
-          <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
-            Cấu hình Galaxy A73 5G được nâng cấp mạnh với chip Snapdragon 778G,
-            RAM lên đến 8 GB
-          </p>
-          <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
-            Chiến game thoải mái không lo gián đoạn - Viên pin lớn 5000 mAh, hỗ
-            trợ sạc nhanh 25 W
-          </p> */}
         </div>
         <p className="text-[#444444] text-[15px] leading-[22px] mb-7">
           Năm 2022 hứa hẹn sẽ là một năm rất đáng trông đợi đối với những ai là
@@ -138,7 +118,12 @@ const ProductDetail = () => {
           nên mua không? Tìm hiểu ngay nhé!
         </p>
         <div>
-          <h2 className="text-[#0A263C] leading-[25px] text-[21px] mb-[7px]">
+          <div
+            className="mb-6"
+            dangerouslySetInnerHTML={{ __html: product.description_long }}
+          ></div>
+
+          {/* <h2 className="text-[#0A263C] leading-[25px] text-[21px] mb-[7px]">
             Đánh giá Samsung A73 - Hiệu năng mượt mà, chụp ảnh chuyên nghiệp
           </h2>
           <p className="text-[15px] text-[#444444] leading-[22px] mb-[30px]">
@@ -164,7 +149,7 @@ const ProductDetail = () => {
             Kích thước và trọng lượng của chiếc điện thoại rất vừa phải và dĩ
             nhiên sẽ không chiếm quá nhiều diện tích trong túi xách và có thể di
             chuyển dễ dàng.
-          </p>
+          </p> */}
         </div>
         <div className="text-center mb-[222px]">
           <button className="py-[6px] px-[133px] border border-black rounded-xl text-sm leading-[22px]">

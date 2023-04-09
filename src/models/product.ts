@@ -13,6 +13,7 @@ export const addSchema = Yup.object({
   description_special: Yup.string().required(
     "Trường mô tả đặc biệt là bắt buộc"
   ),
+  brand: Yup.string().required("Trường thể loại không được để trống"),
   images: Yup.string().required("Trường ảnh là bắt buộc"),
   categoryId: Yup.string().required("Trường loại là bắt buộc"),
 });
@@ -32,6 +33,9 @@ export const updateSchema = Yup.object({
   description_special: Yup.string().required(
     "Trường mô tả đặc biệt là bắt buộc"
   ),
+  brand: Yup.string().required("Trường thể loại không được để trống"),
+  images: Yup.string().required("Trường ảnh là bắt buộc"),
+  categoryId: Yup.string().required("Trường loại là bắt buộc"),
 });
 
 export type updateForm = Yup.InferType<typeof updateSchema>;

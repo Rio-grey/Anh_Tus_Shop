@@ -30,7 +30,7 @@ const Signin = () => {
         ...user,
       });
       console.log(data);
-      navigate("/");
+      navigate("/admin");
     } catch (error) {
       console.log(error);
     }

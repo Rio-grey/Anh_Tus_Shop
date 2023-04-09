@@ -7,6 +7,6 @@ export interface IProduct {
   description_short: string;
   description_long: string;
   brand: string;
-  images: string[];
+  images: string;
   categoryId: string;
 }

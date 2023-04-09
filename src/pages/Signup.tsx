@@ -62,19 +62,6 @@ const Signup = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="" className="block mb-2 text-lg text-[#444]">
-              Số điện thoại
-            </label>
-            <input
-              {...register("phoneNumber")}
-              type="number"
-              className="px-3 py-2 border border-gray-200 rounded-md outline-none min-w-[410px]"
-            />
-            <p className="text-xs text-red-500">
-              {errors.phoneNumber && errors.phoneNumber.message}
-            </p>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="" className="block mb-2 text-lg text-[#444]">
               Mật khẩu
             </label>
             <input

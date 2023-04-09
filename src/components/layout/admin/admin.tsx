@@ -76,13 +76,13 @@ const AdminLayout = (props: Props) => {
                       className="text-sm text-gray-900 dark:text-white"
                       role="none"
                     >
-                      Lê Đình Quý
+                      Admin
                     </p>
                     <p
                       className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
                       role="none"
                     >
-                      lequy11082003@gmail.com
+                      admin@gmail.com
                     </p>
                   </div>
                   <ul className="py-1" role="none">

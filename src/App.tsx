@@ -25,7 +25,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />}></Route>
           <Route path="addProduct" element={<Add />}></Route>
-          <Route path="editProduct/:id" element={<Edit />}></Route>
+          <Route path="products/:id" element={<Edit />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
