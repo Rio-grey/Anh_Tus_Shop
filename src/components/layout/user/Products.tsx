@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IProduct } from "../models";
+import { IProduct } from "../../../interfaces/product";
 
 type Props = {
   data: IProduct;
@@ -8,7 +8,7 @@ type Props = {
 const Product = ({ data }: Props) => {
   return (
     <Link
-      to={`product/${data.id}`}
+      to={`product/${data._id}`}
       className="flex flex-col p-5 mb-16 shadow-lg"
     >
       <img

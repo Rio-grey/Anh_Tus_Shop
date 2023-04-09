@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 // import SidebarMenu from "../components/SidebarMenu";
-import { getAll } from "../../api/product";
+import { deleteProducts, getAll } from "../../api/product";
 import { useEffect, useState } from "react";
-import { IProduct } from "../models";
+import { IProduct } from "../../interfaces/product";
+import { getCategory } from "../../api/category";
 
 const Dashboard = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [category, setCategory] = useState<IProduct[]>([]);
+  // console.log(category);
+
+  // console.log(products);
+
   const fetchProducts = async () => {
     try {
       const { data } = await getAll();
@@ -15,8 +21,25 @@ const Dashboard = () => {
       console.log(error);
     }
   };
+  const fetchCategory = async () => {
+    try {
+      const { data } = await getCategory();
+      // console.log(data);
+      setCategory(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteProduct = (id: string | number) => {
+    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm")) {
+      deleteProducts(id);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
+    fetchCategory();
   }, []);
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -93,7 +116,7 @@ const Dashboard = () => {
         <tbody>
           {products.map((product) => (
             <tr
-              key={product.id}
+              key={product._id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <td className="w-4 p-4">
@@ -117,7 +140,11 @@ const Dashboard = () => {
               <td className="px-6 py-4">
                 <img src={product?.images[0]} className="w-28" alt="" />
               </td>
-              <td className="px-6 py-4">{product.categoryId}</td>
+              <td className="px-6 py-4">
+                {category.map((value) => {
+                  return value._id == product.categoryId ? value.name : "";
+                })}
+              </td>
               <td className="px-6 py-4">{product.price} ₫</td>
               <td className="px-6 py-4">{product.original_price} ₫</td>
               <td className="px-6 py-4">
@@ -127,7 +154,10 @@ const Dashboard = () => {
                 >
                   Edit
                 </Link>
-                <button className="px-3 py-[6.5px] ml-3 font-medium text-white bg-red-500 rounded-md shadow-red-500/50">
+                <button
+                  onClick={() => handleDeleteProduct(product._id)}
+                  className="px-3 py-[6.5px] ml-3 font-medium text-white bg-red-500 rounded-md shadow-red-500/50"
+                >
                   Remove
                 </button>
               </td>

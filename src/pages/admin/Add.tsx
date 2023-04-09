@@ -1,14 +1,42 @@
-import React from "react";
-import SidebarMenu from "../../components/SidebarMenu";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useParams, useNavigate } from "react-router-dom";
+import { addForm, addSchema } from "../../models/product";
+import { addProduct } from "../../api/product";
 
 const Add = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<addForm>({
+    resolver: yupResolver(addSchema),
+  });
+  const onSubmit = async (product: addForm) => {
+    try {
+      const response = await addProduct(product);
+      console.log(response);
+      navigate("/admin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchProduct = async () => {
+    const { data } = await addProduct(data);
+    console.log(data);
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, []);
   return (
     <div className="flex">
       <div className="w-full p-7">
         <h1 className="leading-[30px] mb-4 text-xl text-[#5F5E61] font-semibold">
           Thêm mới Sản phẩm
         </h1>
-        <div className="flex gap-x-[35px]">
+        <form className="flex gap-x-[35px]" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <div className="flex items-center justify-center w-[500px] mb-5">
               <label
@@ -40,7 +68,15 @@ const Add = () => {
                   </p>
                   <p className="mt-3 text-gray-400">Thêm ảnh</p>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                <input
+                  {...register("images")}
+                  id="dropzone-file"
+                  type="file"
+                  className="hidden"
+                />
+                <p className="text-xs text-red-500">
+                  {errors.images && errors.images.message}
+                </p>
               </label>
             </div>
             <textarea
@@ -139,7 +175,7 @@ const Add = () => {
               Thêm mới
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

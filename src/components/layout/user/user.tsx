@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 const UserLayout = () => {
+  const [user, setUser] = useState({});
   return (
     <div>
       {/* Header */}

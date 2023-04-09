@@ -1,6 +1,16 @@
-import { Outlet, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
-const AdminLayout = () => {
+type Props = {};
+const AdminLayout = (props: Props) => {
+  const user = JSON.parse(localStorage.getItem("user") as string);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user?.role !== "admin") {
+      return navigate("/");
+    }
+  }, [navigate]);
+
   return (
     <div className="">
       <nav className="fixed top-0 z-50 w-full bg-blue-900 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
