@@ -10,6 +10,8 @@ import Edit from "./pages/admin/Edit";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Cart from "./pages/user/Cart";
+import EditCategory from "./pages/admin/EditCategory";
+import ListCategory from "./pages/admin/ListCategory";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route index element={<Dashboard />}></Route>
           <Route path="addProduct" element={<Add />}></Route>
           <Route path="products/:id" element={<Edit />}></Route>
+          <Route path="category" element={<ListCategory />}></Route>
+          <Route path="category/:id" element={<EditCategory />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

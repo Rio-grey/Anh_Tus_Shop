@@ -27,7 +27,7 @@ const Homepage = () => {
       </div>
       <div className="mb-5">
         <h1 className="text-2xl mb-5 font-medium leading-10 text-[#444444]">
-          ĐIỆN THOẠI NỔI BẬT NHẤT
+          SẢN PHẨM NỔI BẬT NHẤT
         </h1>
         <div className="grid grid-cols-5 gap-6">
           {products.map((product) => (
@@ -35,7 +35,7 @@ const Homepage = () => {
           ))}
         </div>
       </div>
-      <div className="mb-5">
+      {/* <div className="mb-5">
         <h1 className="text-2xl mb-5 font-medium leading-10 text-[#444444]">
           LAPTOP BÁN CHẠY NHẤT
         </h1>
@@ -44,8 +44,8 @@ const Homepage = () => {
             <Product key={product._id} data={product} />
           ))}
         </div>
-      </div>
-      <div className="mb-5">
+      </div> */}
+      {/* <div className="mb-5">
         <h1 className="text-2xl mb-5 font-medium leading-10 text-[#444444]">
           TABLET NỔI BẬT
         </h1>
@@ -54,7 +54,7 @@ const Homepage = () => {
             <Product key={product._id} data={product} />
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../../interfaces/product";
 import { getCategory } from "../../api/category";
 
-const Dashboard = () => {
+const ListCategory = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [category, setCategory] = useState<IProduct[]>([]);
   // console.log(category);
@@ -34,7 +34,6 @@ const Dashboard = () => {
   const handleDeleteProduct = (id: string | number) => {
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm")) {
       deleteProducts(id);
-      location.href = "/admin";
     }
   };
 
@@ -159,13 +158,13 @@ const Dashboard = () => {
                 >
                   Edit
                 </Link>
-                <button
-                  // href="/admin"
+                <a
+                  href="/admin"
                   onClick={() => handleDeleteProduct(product._id)}
                   className="px-3 py-2 ml-3 font-medium text-white bg-red-500 rounded-md shadow-red-500/50"
                 >
                   Remove
-                </button>
+                </a>
               </td>
             </tr>
           ))}
@@ -175,4 +174,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ListCategory;

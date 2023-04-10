@@ -13,7 +13,7 @@ const Product = ({ data }: Props) => {
     >
       <img
         alt=""
-        src={data?.images[0]}
+        src={data?.images}
         className="object-cover w-[200px] h-[200px] mx-auto mb-3"
       />
       <h3 className="mb-4 text-lg font-semibold">{data.name}</h3>

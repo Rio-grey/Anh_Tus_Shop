@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getAll, getById, updateProduct } from "../../api/product";
+import { getById, updateProduct } from "../../api/product";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { updateForm, updateSchema } from "../../models/product";
 import { ICategory } from "../../interfaces/category";
 import { IProduct } from "../../interfaces/product";
 import { getCategory } from "../../api/category";
 
-const Edit = () => {
+const EditCategory = () => {
   const [category, setCategory] = useState<ICategory[]>([]);
   const [product, setProduct] = useState<IProduct>({} as IProduct);
-  console.log(product);
-
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -27,15 +25,6 @@ const Edit = () => {
       }
     },
   });
-  // const fetchProduct = async (id) => {
-  //   try {
-  //     const { data } = await getById(id);
-  //     // console.log(data);
-  //     setProduct(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   const fetchCategory = async () => {
     try {
       const { data } = await getCategory();
@@ -62,14 +51,15 @@ const Edit = () => {
     const {
       data: { data: product },
     } = await getById(id);
-    setProduct(product);
+    console.log(product);
+
     return product;
   };
-  useEffect(() => {
-    if (id) {
-      fetchProductById(id);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (id) {
+  //     fetchProductById(id);
+  //   }
+  // }, []);
   return (
     <div className="flex">
       <div className="w-full p-7">
@@ -85,7 +75,11 @@ const Edit = () => {
                   className="flex flex-col items-center justify-center w-full h-64 rounded-lg shadow-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <img src={product?.images} className="w-[150px]" alt="" />
+                    <img
+                      src="../../samsungA73.png"
+                      className="w-[150px]"
+                      alt=""
+                    />
                     <p className="mt-3 text-gray-400">Sửa ảnh</p>
                   </div>
                   <input
@@ -245,4 +239,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default EditCategory;

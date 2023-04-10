@@ -32,7 +32,7 @@ const ProductDetail = () => {
       <div className="max-w-[1220px] mx-auto flex gap-x-[52px] mb-[66px]">
         <div>
           <img
-            src={product.images?.[0]}
+            src={product.images}
             alt=""
             className="mb-[42px] w-[358px] h-[358px] mx-auto"
           />
@@ -45,28 +45,28 @@ const ProductDetail = () => {
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0]}
+                src={product.images}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0]}
+                src={product.images}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0]}
+                src={product.images}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
             </div>
             <div className="border border-[#D1D5DB] rounded-lg p-[2px]">
               <img
-                src={product.images?.[0]}
+                src={product.images}
                 alt=""
                 className="w-[48px] h-[48px] object-cover"
               />
@@ -105,18 +105,19 @@ const ProductDetail = () => {
           <h1 className="text-[#D70018] text-lg leading-[25px] text-center mb-[7px]">
             ĐẶC ĐIỂM NỔI BẬT
           </h1>
-          <p className="text-[#444444] text-sm leading-[22px] mb-[5px]">
-            {product.description_special}
-          </p>
+          <p
+            className="text-[#444444] text-sm leading-[22px] mb-[5px]"
+            dangerouslySetInnerHTML={{ __html: product.description_special }}
+          ></p>
         </div>
-        <p className="text-[#444444] text-[15px] leading-[22px] mb-7">
+        {/* <p className="text-[#444444] text-[15px] leading-[22px] mb-7">
           Năm 2022 hứa hẹn sẽ là một năm rất đáng trông đợi đối với những ai là
           fan của thương hiệu điện thoại Samsung. Mới đây, hãng sẽ tiếp tục cho
           ra mắt nhiều smartphone với sự cải tiến trong thiết kế và cấu hình,
           trong đó phải kể đến chiếc Samsung Galaxy A73 với nhiều cải tiến so
           với thế hệ trước. Vậy sản phẩm có gì nổi bật, giá bao nhiêu và liệu có
           nên mua không? Tìm hiểu ngay nhé!
-        </p>
+        </p> */}
         <div>
           <div
             className="mb-6"
