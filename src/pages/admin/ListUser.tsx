@@ -1,22 +1,11 @@
 import { Link } from "react-router-dom";
 import { getAll } from "../../api/product";
 import { useEffect, useState } from "react";
-import { IProduct } from "../../interfaces/product";
 import { deleteCategory, getCategory } from "../../api/category";
 import { ICategory } from "../../interfaces/category";
 
-const ListCategory = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+const ListUsers = () => {
   const [category, setCategory] = useState<ICategory[]>([]);
-
-  const fetchProducts = async () => {
-    try {
-      const { data } = await getAll();
-      setProducts(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const fetchCategory = async () => {
     try {
@@ -30,12 +19,11 @@ const ListCategory = () => {
   const handleDeleteCategory = (id: string | number) => {
     if (confirm("Bạn có chắc chắn muốn xóa danh mục")) {
       deleteCategory(id);
-      setCategory(category.filter((cate) => cate._id != id));
+      location.href = "/admin/categories";
     }
   };
 
   useEffect(() => {
-    fetchProducts();
     fetchCategory();
   }, []);
 
@@ -92,7 +80,10 @@ const ListCategory = () => {
               </div>
             </th>
             <th scope="col" className="px-6 py-3">
-              Category name
+              User name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Email
             </th>
             <th scope="col" className="px-6 py-3">
               Action
@@ -145,4 +136,4 @@ const ListCategory = () => {
   );
 };
 
-export default ListCategory;
+export default ListUsers;

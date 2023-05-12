@@ -62,7 +62,7 @@ const AdminLayout = (props: Props) => {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="w-8 h-8 rounded-full"
-                      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                      src="https://source.unsplash.com/random"
                       alt="user photo"
                     />
                   </button>
@@ -157,7 +157,7 @@ const AdminLayout = (props: Props) => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/admin"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -177,7 +177,7 @@ const AdminLayout = (props: Props) => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/admin/categories"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -190,7 +190,7 @@ const AdminLayout = (props: Props) => {
                   <path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path>
                   <path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Thể loại</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Danh mục</span>
                 <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
                   3
                 </span>
@@ -198,7 +198,7 @@ const AdminLayout = (props: Props) => {
             </li>
             <li>
               <Link
-                to="#"
+                to="/admin/users"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg

@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getById, updateProduct } from "../../api/product";
 import { useParams, useNavigate } from "react-router-dom";
-import { addForm, addSchema } from "../../models/product";
-import { addProduct } from "../../api/product";
+import { updateForm, updateSchema } from "../../models/product";
 import { ICategory } from "../../interfaces/category";
+import { IProduct } from "../../interfaces/product";
 import { getCategory } from "../../api/category";
 
-const Add = () => {
+const EditProduct = () => {
   const [category, setCategory] = useState<ICategory[]>([]);
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
+  // console.log(product);
+
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  const fetchProductById = async (id: string | number) => {
+    const {
+      data: { data: product },
+    } = await getById(id);
+    setProduct(product);
+    return product;
+  };
   const fetchCategory = async () => {
     try {
       const { data } = await getCategory();
@@ -18,77 +31,72 @@ const Add = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    fetchCategory();
-  }, []);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<addForm>({
-    resolver: yupResolver(addSchema),
+  } = useForm<updateForm>({
+    resolver: yupResolver(updateSchema),
+    defaultValues: async () => {
+      if (id) {
+        return await fetchProductById(id);
+      }
+    },
   });
-  const onSubmit = async (product: addForm) => {
+
+  const onHandleSubmit = async (data: updateForm) => {
+    console.log(data);
     try {
-      const response = await addProduct(product);
-      console.log(response);
-      navigate("/admin");
+      if (id) {
+        const response = await updateProduct(id, data);
+        console.log(response);
+        navigate("/admin");
+      }
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchCategory();
+    if (id) {
+      fetchProductById(id);
+    }
+  }, []);
+
   return (
     <div className="flex">
       <div className="w-full p-7">
         <h1 className="leading-[30px] mb-4 text-xl text-[#5F5E61] font-semibold">
-          Thêm mới Sản phẩm
+          Cập nhật Sản phẩm
         </h1>
-        <form className="flex gap-x-[35px]" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex gap-x-[35px]"
+          onSubmit={handleSubmit(onHandleSubmit)}
+        >
           <div>
-            <div className="flex items-center justify-center w-[500px] mb-5">
+            <div className=" w-[500px] mb-5">
               <label
-                htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-64 rounded-lg shadow-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                htmlFor=""
+                className="text-[13px] leading-5 text-[#5A6169] block mb-2"
               >
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <svg
-                    aria-hidden="true"
-                    className="w-10 h-10 mb-3 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                    ></path>
-                  </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> or
-                    drag and drop
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
-                  </p>
-                  <p className="mt-3 text-gray-400">Thêm ảnh</p>
-                </div>
-                <input
-                  {...register("images")}
-                  id="dropzone-file"
-                  type="file"
-                  className="hidden"
-                />
+                Ảnh
               </label>
+              <img src={product.images} className="w-[350px] mx-auto" alt="" />
+              <input
+                {...register("images")}
+                id="dropzone-file"
+                type="text"
+                className="w-full p-5 mb-2 text-sm text-gray-500 border-none rounded-md shadow-md"
+                placeholder="Thêm ảnh"
+              />
               <p className="text-xs text-red-500">
                 {errors.images && errors.images.message}
               </p>
             </div>
             <textarea
               {...register("description_short")}
-              className="w-full h-24 shadow-md rounded-md outline-none border-none p-4 text-[13px] text-[#5A6169] resize-none"
+              className="w-full h-24 shadow-md rounded-md outline-none p-4 text-[13px] text-[#5A6169] resize-none border-none"
               placeholder="Mô tả ngắn..."
             ></textarea>
             <p className="text-xs text-red-500">
@@ -125,7 +133,7 @@ const Add = () => {
                 </label>
                 <input
                   {...register("original_price")}
-                  type="text"
+                  type="number"
                   className="px-3 py-2 w-full text-sm text-[#444444] leading-5 border border-gray-200 rounded-md outline-none"
                 />
                 <p className="text-xs text-red-500">
@@ -141,7 +149,7 @@ const Add = () => {
                 </label>
                 <input
                   {...register("price")}
-                  type="text"
+                  type="number"
                   className="px-3 py-2 w-full text-sm text-[#444444] leading-5 border border-gray-200 rounded-md outline-none"
                 />
                 <p className="text-xs text-red-500">
@@ -158,14 +166,16 @@ const Add = () => {
                   Danh mục
                 </label>
                 <select
+                  className="w-full p-2 text-sm bg-transparent border-gray-200 rounded-md border-1"
                   {...register("categoryId")}
-                  className="p-2 w-full text-sm text-[#444444] leading-5 border border-gray-200 rounded-md outline-none"
+                  defaultValue={product?.categoryId}
                 >
-                  {category.map((value) => (
-                    <option key={value._id} value={value._id}>
-                      {value.name}
-                    </option>
-                  ))}
+                  {category &&
+                    category.map((cate) => (
+                      <option key={cate._id} value={cate?._id}>
+                        {cate.name}
+                      </option>
+                    ))}
                 </select>
                 <p className="text-xs text-red-500">
                   {errors.categoryId && errors.categoryId.message}
@@ -220,7 +230,7 @@ const Add = () => {
               </p>
             </div>
             <button className="bg-[#00B0D7] hover:bg-[#007BFF] transition-all text-white text-xs leading-[14px] px-[13px] py-[10px] rounded-md">
-              Thêm mới
+              Sửa lại
             </button>
           </div>
         </form>
@@ -229,4 +239,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default EditProduct;

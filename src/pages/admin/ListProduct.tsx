@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-// import SidebarMenu from "../components/SidebarMenu";
 import { deleteProducts, getAll } from "../../api/product";
 import { useEffect, useState } from "react";
 import { IProduct } from "../../interfaces/product";
 import { getCategory } from "../../api/category";
+import { ICategory } from "../../interfaces/category";
 
-const Dashboard = () => {
+const ListProduct = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [category, setCategory] = useState<IProduct[]>([]);
+  const [category, setCategory] = useState<ICategory[]>([]);
   // console.log(category);
 
   // console.log(products);
@@ -34,7 +34,7 @@ const Dashboard = () => {
   const handleDeleteProduct = (id: string | number) => {
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm")) {
       deleteProducts(id);
-      location.href = "/admin";
+      setProducts(products.filter((product) => product._id != id));
     }
   };
 
@@ -175,4 +175,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ListProduct;

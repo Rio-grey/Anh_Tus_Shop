@@ -4,14 +4,17 @@ import UserLayout from "./components/layout/user/user";
 import Homepage from "./pages/user/HomePage";
 import DetailProduct from "./pages/user/DetailProduct";
 import AdminLayout from "./components/layout/admin/admin";
-import Dashboard from "./pages/admin/Dashboard";
-import Add from "./pages/admin/Add";
-import Edit from "./pages/admin/Edit";
+import ListProduct from "./pages/admin/ListProduct";
+import AddProduct from "./pages/admin/AddProduct";
+import EditProduct from "./pages/admin/EditProduct";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Cart from "./pages/user/Cart";
 import EditCategory from "./pages/admin/EditCategory";
 import ListCategory from "./pages/admin/ListCategory";
+import AddCategory from "./pages/admin/AddCategory";
+import ListUsers from "./pages/admin/ListUser";
+import EditUser from "./pages/admin/EditUser";
 
 function App() {
   return (
@@ -25,11 +28,14 @@ function App() {
           <Route path="cart" element={<Cart />}></Route>
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />}></Route>
-          <Route path="addProduct" element={<Add />}></Route>
-          <Route path="products/:id" element={<Edit />}></Route>
-          <Route path="category" element={<ListCategory />}></Route>
-          <Route path="category/:id" element={<EditCategory />}></Route>
+          <Route index element={<ListProduct />}></Route>
+          <Route path="addProduct" element={<AddProduct />}></Route>
+          <Route path="products/:id" element={<EditProduct />}></Route>
+          <Route path="categories" element={<ListCategory />}></Route>
+          <Route path="addCategory" element={<AddCategory />}></Route>
+          <Route path="categories/:id" element={<EditCategory />}></Route>
+          <Route path="users" element={<ListUsers />}></Route>
+          <Route path="users/:id" element={<EditUser />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

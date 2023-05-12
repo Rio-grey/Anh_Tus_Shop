@@ -7,7 +7,7 @@ import { ICategory } from "../../interfaces/category";
 import { IProduct } from "../../interfaces/product";
 import { getOneCategory, updateCategory } from "../../api/category";
 
-const EditCategory = () => {
+const EditUser = () => {
   // const [category, setCategory] = useState<ICategory>({} as ICategory);
   // const [product, setProduct] = useState<IProduct>({} as IProduct);
   const { id } = useParams();
@@ -24,7 +24,17 @@ const EditCategory = () => {
       }
     },
   });
-
+  // const fetchCategory = async () => {
+  //   try {
+  //     const { data } = await getCategory();
+  //     setCategory(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fetchCategory();
+  // }, []);
   const onHandleSubmit = async (data: updateForm) => {
     try {
       if (id) {
@@ -83,4 +93,4 @@ const EditCategory = () => {
   );
 };
 
-export default EditCategory;
+export default EditUser;

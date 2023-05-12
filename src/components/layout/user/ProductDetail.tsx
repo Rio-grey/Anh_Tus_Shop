@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getById } from "../../../api/product";
 import { IProduct } from "../../../interfaces/product";
 
@@ -90,9 +90,9 @@ const ProductDetail = () => {
               Mua ngay
             </button>
             <div className="p-3 bg-white border w-[48px] rounded-md border-[#D70018]">
-              <a href="">
+              <Link to="/cart">
                 <img src="../../cart.svg" alt="" />
-              </a>
+              </Link>
             </div>
             <span className="text-sm leading-6 max-w-[68px]">
               Thêm vào giỏ hàng
